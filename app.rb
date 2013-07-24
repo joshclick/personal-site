@@ -55,12 +55,18 @@ class App < Sinatra::Base
 
   get '/blog/edit/:id' do |id|
     @post = Post.find(id)
-    haml :edit
+    haml :edit, :locals => { :body => @post.body}
   end
 
-  delete '/blog/:id' do |id|
+  post '/blog/:id' do |id|
+    @post = Post.find(id)
+    @post.update_attributes(params[:post])
+    redirect '/blog'
+  end
+
+  post '/blog/del/:id' do |id|
     @post = Post.find(id)
     @post.delete
-    redirect '/'
+    redirect '/blog'
   end
 end
