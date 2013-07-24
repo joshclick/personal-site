@@ -3,7 +3,6 @@ require 'compass'
 require 'sinatra'
 require 'haml'
 require 'redcarpet'
-require 'zurb-foundation'
 require 'mongo'
 require 'mongoid'
 
