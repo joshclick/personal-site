@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'compass', '0.12.2'
+gem 'compass'
 gem 'sinatra', '1.4.3'
-gem 'zurb-foundation', '4.3.0'
+gem "zurb-foundation", :git => "git@github.com:zurb/foundation.git"
 gem 'thin'
 gem 'mongo', '1.9.1'
 gem 'mongoid', '3.1.4'
 gem 'bson_ext'
-gem 'mustache'
+gem 'haml'
 
 group :development do
   gem 'shotgun'

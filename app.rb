@@ -1,7 +1,7 @@
 require 'bundler/setup'
 require 'compass'
 require 'sinatra'
-require 'mustache/sinatra'
+require 'haml'
 require 'zurb-foundation'
 require 'mongo'
 require 'mongoid'
@@ -20,15 +20,6 @@ class Post
 end
 
 class App < Sinatra::Base
-  # setup mustache
-  register Mustache::Sinatra
-  require './views/layout'
-
-  set :mustache, {
-    :views     => './views/',
-    :templates => './templates/'
-  }
-
   # setup compass
   configure do
     set :haml, {:format => :html5, :escape_html => true}
@@ -43,38 +34,29 @@ class App < Sinatra::Base
 
   # routes
   get '/' do
-    @test = 'asdf'
-    @posts = Post.all.descending(:created_at).limit(5).to_a
-    mustache :index
+    haml :index
   end
 
-  get '/new' do
-    @post = Post.new
-    mustache :new
+  get '/blog' do
+    @posts = Post.all.descending(:created_at).to_a
+    haml :blog
   end
 
-  post '/' do
+  get '/blog/new' do
+    haml :new
+  end
+
+  post '/blog' do
     @post = Post.create(params[:post])
-    redirect '/'
+    redirect '/blog'
   end
 
-  get '/:id' do |id|
+  get '/blog/edit/:id' do |id|
     @post = Post.find(id)
-    mustache :show
+    haml :edit
   end
 
-  get '/:id/edit' do |id|
-    @post = Post.find(id)
-    mustache :edit
-  end
-
-  put '/:id' do |id|
-    @post = Post.find(id)
-    @post.update_attributes(params[:post])
-    mustache :show
-  end
-
-  delete '/:id' do |id|
+  delete '/blog/:id' do |id|
     @post = Post.find(id)
     @post.delete
     redirect '/'

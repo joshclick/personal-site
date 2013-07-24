@@ -1,0 +1,16 @@
+.row
+  .small-12.columns
+    %header
+      %h1
+        My Blog
+  .small-12.columns#post-list
+    - @posts.each do |post|
+      .post
+        %h2
+          = post.title
+        %p
+          = post.body
+        %p.published
+          = post.created_at
+        %p
+          %a{:href => ['/blog/edit/', post.id].join} Edit

@@ -1,0 +1,119 @@
+.post {		
+	margin-bottom: 60px;
+	h2 {
+		font-weight: 400;
+	}
+	.published {
+		font-size: 0.9em;
+		color: #444;
+	}
+}
+
+#about {
+	img {
+		max-width: 600px;
+		width: 100%;
+		border-radius: 5px;
+	}
+	.icon {
+		display: inline-block;
+		height: 75px;
+		width: 75px;
+		border-radius: 5px;
+		margin: 0 10px 10px 0;
+		&.gh { background-image: url('../img/icon-gh.png'); }
+		&.fb { background-image: url('../img/icon-fb.png'); }
+		&.in { background-image: url('../img/icon-in.png'); }
+	}
+}
+
+#about-img {
+	overflow: hidden;
+	img { margin: -7% 0; }
+}
+
+#story {
+	margin-top: 30px;
+	.event {
+		margin-top: 50px;
+		border-top: 1px dashed #777;
+		padding-top: 50px;
+		p { margin-bottom: 1em; }
+	}
+	#seedling {
+		max-width: 400px;
+		width: 100%;
+		margin-left: -5%;
+	}
+}
+
+// @mixin keyframes( $animationName ) {
+//     @-webkit-keyframes $animationName { @content; }
+//     @-moz-keyframes $animationName { @content; }
+//     @-o-keyframes $animationName { @content; }
+//     @keyframes $animationName { @content; }
+// }
+
+// @include keyframes( progress-bar-stripes ) {
+//   from { background-position: 0 0; }
+//   to { background-position: 40px 0; }
+// }
+
+#abilities {
+	li {
+		margin-bottom: 20px;
+		h4 { margin-bottom: 0; }
+	}
+
+	.progress {
+		border: none;
+
+		&.legend .meter {
+			width: 32%;
+			margin-right: 2%;
+		}
+
+		.meter {
+			float: left;
+			width: 19.2%;
+			margin-right: 1%;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 26px;
+			color: white;
+			font-weight: bold;
+
+			&:last-child { margin-right: 0; }
+
+			&.lvl1 { background-color: #f57800; }
+			&.lvl2 { background-color: #f7b101; }
+			&.lvl3 { background-color: #f5db00; }
+			&.lvl4 { background-color: #cade01; }
+			&.lvl5 { background-color: #8EDE01; }
+		}
+
+		.striped {
+			background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, rgba(0, 0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0)));
+			background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+			background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+			background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+			background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+			-webkit-background-size: 40px 40px;
+			-moz-background-size: 40px 40px;
+			-o-background-size: 40px 40px;
+			background-size: 40px 40px;
+
+			&.active {
+				-webkit-animation: progress-bar-stripes 2s linear infinite;
+				-moz-animation: progress-bar-stripes 2s linear infinite;
+				-ms-animation: progress-bar-stripes 2s linear infinite;
+				-o-animation: progress-bar-stripes 2s linear infinite;
+				animation: progress-bar-stripes 2s linear infinite;
+			}
+		}
+	}
+}
+
+.job {
+	margin-bottom: 20px;
+}
