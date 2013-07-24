@@ -8,9 +8,9 @@
       .post
         %h2
           = post.title
-        %p
-          = post.body
+        :markdown
+          #{post.body}
         %p.published
-          = post.created_at
+          = post.published_on
         %p
           %a{:href => ['/blog/edit/', post.id].join} Edit

@@ -2,6 +2,7 @@ require 'bundler/setup'
 require 'compass'
 require 'sinatra'
 require 'haml'
+require 'redcarpet'
 require 'zurb-foundation'
 require 'mongo'
 require 'mongoid'
@@ -17,6 +18,7 @@ class Post
 
   field :title, type: String
   field :body, type: String
+  field :published_on, type: String
 end
 
 class App < Sinatra::Base
@@ -38,7 +40,7 @@ class App < Sinatra::Base
   end
 
   get '/blog' do
-    @posts = Post.all.descending(:created_at).to_a
+    @posts = Post.all.descending(:published_on).to_a
     haml :blog
   end
 

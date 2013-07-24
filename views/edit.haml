@@ -17,8 +17,13 @@
             %br
           %textarea#post_body(name='post[body]')
             = @post.body
+        %p
+          %label(for='published_on')
+            Published On
+            %br
+          %input#published_on{:type => 'text', :name => 'post[published_on]', :value => @post.published_on}
         %fieldset
           %p
-            %button Create Post
+            %button Save Post
             or
             %a(href='/blog') Cancel

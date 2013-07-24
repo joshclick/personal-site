@@ -9,6 +9,7 @@ gem 'mongo', '1.9.1'
 gem 'mongoid', '3.1.4'
 gem 'bson_ext'
 gem 'haml'
+gem 'redcarpet'
 
 group :development do
   gem 'shotgun'
