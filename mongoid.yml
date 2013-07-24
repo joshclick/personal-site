@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: jc_personal
+      database: dbname
       hosts:
         - localhost:27017
 production:

@@ -43,8 +43,40 @@ class App < Sinatra::Base
 
   # routes
   get '/' do
-    Post.create(title: 'Trust the Stache', body: 'Mustache is a great template language for the client and server')
-    @post = Post.all.to_a
+    @test = 'asdf'
+    @posts = Post.all.descending(:created_at).limit(5).to_a
     mustache :index
+  end
+
+  get '/new' do
+    @post = Post.new
+    mustache :new
+  end
+
+  post '/' do
+    @post = Post.create(params[:post])
+    redirect '/'
+  end
+
+  get '/:id' do |id|
+    @post = Post.find(id)
+    mustache :show
+  end
+
+  get '/:id/edit' do |id|
+    @post = Post.find(id)
+    mustache :edit
+  end
+
+  put '/:id' do |id|
+    @post = Post.find(id)
+    @post.update_attributes(params[:post])
+    mustache :show
+  end
+
+  delete '/:id' do |id|
+    @post = Post.find(id)
+    @post.delete
+    redirect '/'
   end
 end
