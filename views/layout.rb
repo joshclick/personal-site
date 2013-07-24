@@ -2,7 +2,7 @@ class App
   module Views
     class Layout < Mustache
       def title
-        @title || "Mongolog"
+        @title || "Title Here"
       end
     end
   end
