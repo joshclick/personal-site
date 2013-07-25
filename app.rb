@@ -33,14 +33,27 @@ class App < Sinatra::Base
     scss(:'stylesheets/#{params[:name]}' ) 
   end
 
+
   # routes
   get '/' do
-    haml :index
+    redirect '/about'
   end
 
   get '/blog' do
     @posts = Post.all.descending(:published_on).to_a
     haml :blog
+  end
+
+  get '/about' do
+    haml :about
+  end
+
+  get '/story' do
+    haml :story
+  end
+
+  get '/resume' do
+    haml :resume
   end
 
   get '/blog/new' do
