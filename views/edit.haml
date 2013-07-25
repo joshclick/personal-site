@@ -3,7 +3,7 @@
     %header
       %h1 Edit Post
   %article.small-12.columns
-    %form{:action => ["/blog/", @post.id].join, :method => 'post'}
+    %form{:action => ["/blog/update", @post.id].join, :method => 'post'}
       %fieldset
         %legend Edit Post
         %p

@@ -12,5 +12,6 @@
           #{post.body}
         %p.published
           = post.published_on
-        %p
-          %a{:href => ['/blog/edit/', post.id].join} Edit
+        -if admin?
+          %p
+            %a{:href => ['/blog/edit/', post.id].join} Edit

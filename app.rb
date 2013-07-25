@@ -33,50 +33,64 @@ class App < Sinatra::Base
     scss(:'stylesheets/#{params[:name]}' ) 
   end
 
+  set :username,'daz'
+  set :token,'maketh1$longandh@rdtoremember'
+  set :password,'topsecret'
 
-  # routes
-  get '/' do
-    redirect '/about'
+  helpers do
+    def admin? ; request.cookies[settings.username] == settings.token ; end
+    def protected! ; halt [ 401, 'Not Authorized' ] unless admin? ; end
   end
 
+  # basic routes
+  get('/') { redirect '/about' }
+  get('/about') { haml :about }
+  get('/story') { haml :story }
+  get('/resume') { haml :resume }
+
+  # security
+  get('/admin'){ haml :admin }
+  post '/login' do
+    if params['username']==settings.username&&params['password']==settings.password
+        response.set_cookie(settings.username,settings.token) 
+        redirect '/'
+      else
+        "Username or Password incorrect"
+    end
+  end
+  get('/logout'){ response.set_cookie(settings.username, false) ; redirect '/' }
+
+  # blog routes
   get '/blog' do
     @posts = Post.all.descending(:published_on).to_a
     haml :blog
   end
 
-  get '/about' do
-    haml :about
-  end
-
-  get '/story' do
-    haml :story
-  end
-
-  get '/resume' do
-    haml :resume
-  end
-
   get '/blog/new' do
+    protected!
     haml :new
   end
 
-  post '/blog' do
+  post '/blog/new' do
     @post = Post.create(params[:post])
     redirect '/blog'
   end
 
   get '/blog/edit/:id' do |id|
+    protected!
     @post = Post.find(id)
     haml :edit, :locals => { :body => @post.body}
   end
 
-  post '/blog/:id' do |id|
+  post '/blog/update/:id' do |id|
+    protected!
     @post = Post.find(id)
     @post.update_attributes(params[:post])
     redirect '/blog'
   end
 
   post '/blog/del/:id' do |id|
+    protected!
     @post = Post.find(id)
     @post.delete
     redirect '/blog'
